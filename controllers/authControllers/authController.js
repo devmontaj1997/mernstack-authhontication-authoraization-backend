@@ -391,9 +391,9 @@ export const ForgetPasswordByOtp = expressAsyncHandler(async (req, res) => {
 
     res.cookie("forgetPasswordToken", forgetPasswordToken, {
       httpOnly: true,
-      secure: isProduction, // Set to true in production
+      secure: true, // Set to true in production
       path: "/",
-      sameSite: isProduction ? "Lax" : "Strict", // Adjust based on cross-site needs
+      sameSite: "Lax" ,
       maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
     });
   } else {
