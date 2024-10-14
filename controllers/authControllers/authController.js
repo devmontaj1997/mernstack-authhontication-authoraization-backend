@@ -67,11 +67,11 @@ export const createUser = expressAsyncHandler(async (req, res) => {
     );
 
 
-    const isProduction = process.env.APP_MODE === 'production';
+   
 
     res.cookie("authonticationToken", authonticationToken, {
-      httpOnly: true,
-      secure: process.env.APP_MOD === "development" ? true : false,
+      httpOnly: false,
+      secure: true,
       path: "/",
       sameSite: "Lax",
       maxAge: 1000 * 60 * 60 * 24 * 365,
@@ -390,8 +390,8 @@ export const ForgetPasswordByOtp = expressAsyncHandler(async (req, res) => {
     const isProduction = process.env.APP_MODE === 'production';
 
     res.cookie("forgetPasswordToken", forgetPasswordToken, {
-      httpOnly: true,
-      secure: process.env.APP_MOD === "development" ? true : false,
+      httpOnly: false,
+      secure: true,
       path: "/",
       sameSite: "Lax",
       maxAge: 1000 * 60 * 60 * 24 * 365,
@@ -520,8 +520,8 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
   }
 
   res.cookie("Authorization", Authorization, {
-    httpOnly: true,
-    secure: process.env.APP_MOD === "development" ? true : false,
+    httpOnly: false,
+    secure: true,
     path: "/",
     sameSite: "Lax",
     maxAge: 1000 * 60 * 60 * 24 * 365,
