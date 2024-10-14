@@ -66,19 +66,13 @@ export const createUser = expressAsyncHandler(async (req, res) => {
       }
     );
 
-
-   
-
     res.cookie("authonticationToken", authonticationToken, {
-      httpOnly: false,
-      secure: true,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // true in production, false in development
+      sameSite: process.env.NODE_ENV === "production" ? "Lax" : "Strict",
       path: "/",
-      sameSite: "Lax",
-      maxAge: 1000 * 60 * 60 * 24 * 365,
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
     });
-
-
-
 
     // remove importent data
     delete createUser.password;
@@ -387,14 +381,14 @@ export const ForgetPasswordByOtp = expressAsyncHandler(async (req, res) => {
         expiresIn: "365d",
       }
     );
-    const isProduction = process.env.APP_MODE === 'production';
+    const isProduction = process.env.APP_MODE === "production";
 
     res.cookie("forgetPasswordToken", forgetPasswordToken, {
-      httpOnly: false,
-      secure: true,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // true in production, false in development
+      sameSite: process.env.NODE_ENV === "production" ? "Lax" : "Strict",
       path: "/",
-      sameSite: "Lax",
-      maxAge: 1000 * 60 * 60 * 24 * 365,
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
     });
   } else {
     return res.status(400).json({ message: "This Email Not Exists" });
@@ -520,11 +514,11 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
   }
 
   res.cookie("Authorization", Authorization, {
-    httpOnly: false,
-    secure: true,
-    path: "/",
-    sameSite: "Lax",
-    maxAge: 1000 * 60 * 60 * 24 * 365,
+    httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // true in production, false in development
+      sameSite: process.env.NODE_ENV === "production" ? "Lax" : "Strict",
+      path: "/",
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
   });
 
   res.status(201).json({ ValidUser, message: "Login SuccessFull" });
