@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:4173", "https://mernstack-authhontication-authoraization-fontend.vercel.app"],
+    origin: ["http://localhost:3000", "http://localhost:4173", "https://mernstack-authhontication-authoraization-fontend.vercel.app", "https://mernstack-authhontication-authoraization-5062.onrender.com"],
     credentials: true,
   })
 );

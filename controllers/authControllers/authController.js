@@ -381,7 +381,7 @@ export const ForgetPasswordByOtp = expressAsyncHandler(async (req, res) => {
         expiresIn: "365d",
       }
     );
-    const isProduction = process.env.APP_MODE === "production";
+
 
     res.cookie("forgetPasswordToken", forgetPasswordToken, {
       httpOnly: true,
